@@ -34,14 +34,20 @@ function generatePassword(passwordLength, lowerCaseAllowed,upperCaseAllowed,digi
   var symbols = "{}[]()/<>-";
   
   //edge statement to ensure we are not out of range of password length
+  //edge conditions to ensure we are typing yes or no
   if (passwordLength<8 || passwordLength>128) {
     return "PASSWORD LENGTH OUT OF SPECIFIED RANGE!";
-  }
-  //edge conditions to ensure we are typing yes or no
-  if ((lowerCaseAllowed.toLowerCase() ||upperCaseAllowed.toLowerCase() ||digitsAllowed.toLowerCase() ||symbolsAllowed.toLowerCase) !== ("yes" || "no")) {
-      return "ERROR: YOU NEED TO TYPE \"yes\" or \"no\" FOR YOUR ANSWERS"
+  } else if (lowerCaseAllowed.toLowerCase() !== ("yes") && lowerCaseAllowed.toLowerCase() !== "no") {
+      return "ERROR: YOU NEED TO TYPE \"yes\" or \"no\" FOR YOUR LOWERCASE ANSWERS"
+  } else if (upperCaseAllowed.toLowerCase() !== ("yes") && upperCaseAllowed.toLowerCase() !== "no") {
+    return "ERROR: YOU NEED TO TYPE \"yes\" or \"no\" FOR YOUR UPPERCASE ANSWERS"
+  } else if (digitsAllowed.toLowerCase() !== ("yes") && digitsAllowed.toLowerCase() !== "no") {
+    return "ERROR: YOU NEED TO TYPE \"yes\" or \"no\" FOR YOUR DIGITS ANSWERS"
+  } else if (symbolsAllowed.toLowerCase() !== ("yes") && symbolsAllowed.toLowerCase() !== "no") {
+    return "ERROR: YOU NEED TO TYPE \"yes\" or \"no\" FOR YOUR SYMBOLS ANSWERS"
   }
   
+
   //removing the type of character  if the user responds no to a questions
   if (lowerCaseAllowed.toLowerCase() === "no"){
     alphabetLower = "";
