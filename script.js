@@ -8,7 +8,7 @@ generateBtn.addEventListener("click", writePassword);
 // Write password to the #password input
 //Thsi function is collecting the prompt values and then calling to the generatePassword function with these prompt values as its arguments. 
 function writePassword() {
-  let passwordLength1 = prompt("Please enter the desired length of password between 8 and 128 characters" , "8-128");
+  let passwordLength1 = prompt("Please enter the desired length of password between 8 and 128 characters" , "a number 8 through 128");
   let lowerCaseAllowed1 = prompt("Include lowercase characters? (yes/no)" , "yes/no");
   let upperCaseAllowed1 = prompt("Include uppercase characters? (yes/no)", "yes/no");
   let digitsAllowed1 = prompt("Include number characters?: 0-9 (yes/no)", "yes/no");
