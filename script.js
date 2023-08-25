@@ -1,14 +1,13 @@
+//:::TAGGING THE BUTTON IN HTML
 // The button in HTML has an id="generate", so this variable is now tied to that button
 var generateBtn = document.querySelector("#generate");
-
 // Add event listener to generate button action once clicked. When that button is clicked, the writePassword function is called.
 generateBtn.addEventListener("click", writePassword);
 
-
-//FUNCTION::: This function is collecting the prompt values and then calling to the generatePassword function with these prompt values as its arguments.
+//FUNCTION::: This function is collecting the prompt values and then calling to the generatePassword function with these prompt values as its arguments. This function then changes tehe textarea value in HTML to the provided password
 function writePassword() {
   var x = 1;
-  
+
   var passwordLength1 = prompt(
     "Please enter the desired length of password between 8 and 128 characters",
     "a number 8 through 128"
@@ -17,8 +16,7 @@ function writePassword() {
     "Include lowercase characters? (yes/no)",
     "yes/no"
   );
-  var test = confirm("this is a test for true or false")
-  console.log(test)
+
   var upperCaseAllowed1 = prompt(
     "Include uppercase characters? (yes/no)",
     "yes/no"
@@ -32,11 +30,23 @@ function writePassword() {
     "yes/no"
   );
 
-  if (!confirm("YOU CHOSE: [password-length: " + passwordLength1 + "] [lowerCase: " + lowerCaseAllowed1 + "] [uppercase: "+ upperCaseAllowed1 + "] [digits: " + digitsAllowed1 + "] [symbols: " + symbolsAllowed1 + "] ....is this what you want for you password criteria?")) {
-
-    return; 
+  if (
+    !confirm(
+      "YOU CHOSE: [password-length: " +
+        passwordLength1 +
+        "] [lowerCase: " +
+        lowerCaseAllowed1 +
+        "] [uppercase: " +
+        upperCaseAllowed1 +
+        "] [digits: " +
+        digitsAllowed1 +
+        "] [symbols: " +
+        symbolsAllowed1 +
+        "] ....is this what you want for you password criteria?"
+    )
+  ) {
+    return;
   }
-
 
   //Calling on the Generate Password function to output variable password for us.
   //We then will send this to HTML to display at the #password id.
@@ -51,7 +61,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
-//FUNCTION::: THIS FUNCTION WILL RETURN A RANDOM NUMBER FROM SPECIFIED PARAMS 
+//FUNCTION::: THIS FUNCTION WILL RETURN A RANDOM NUMBER FROM SPECIFIED PARAMS
 function generatePassword(
   passwordLength,
   lowerCaseAllowed,
@@ -66,9 +76,9 @@ function generatePassword(
 
   //edge statement to ensure we are not out of range of password length
   //edge conditions to ensure we are typing yes or no
-    // console.log(typeof(passwordLength));
+  // console.log(typeof(passwordLength));
   if (passwordLength % 1 !== 0) {
-    return 'ERROR: YOU MUST TYPE A WHOLE NUMBER INTO PASSWORD LENGTH';
+    return "ERROR: YOU MUST TYPE A WHOLE NUMBER INTO PASSWORD LENGTH";
   } else if (passwordLength < 8 || passwordLength > 128) {
     return "PASSWORD LENGTH OUT OF SPECIFIED RANGE!";
   } else if (
@@ -91,8 +101,12 @@ function generatePassword(
     symbolsAllowed.toLowerCase() !== "no"
   ) {
     return 'ERROR: YOU NEED TO TYPE "yes" or "no" FOR YOUR SYMBOLS ANSWERS';
-  } else if (lowerCaseAllowed.concat(upperCaseAllowed.concat(digitsAllowed.concat(symbolsAllowed))).toLowerCase() === "nononono") {
-    return 'ERROR: YOU MUST SAY YES TO SOMETHING';
+  } else if (
+    lowerCaseAllowed
+      .concat(upperCaseAllowed.concat(digitsAllowed.concat(symbolsAllowed)))
+      .toLowerCase() === "nononono"
+  ) {
+    return "ERROR: YOU MUST SAY YES TO SOMETHING";
   }
 
   //removing the type of character  if the user responds no to a questions
